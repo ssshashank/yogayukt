@@ -1,0 +1,53 @@
+{
+	"landing": {
+		"screenName": "Landing",
+		"screenType": "slider",
+		"slides": [
+			{
+				"tag": "Discover yoga",
+				"title": "Enhance your lifestyle with yoga.",
+				"description": "Dive into the transformative practices of yoga and awaken inner balance.",
+				"image": "https://via.placeholder.com/150",
+				"pills_gradient": ["#43C6AC", "#63ff85"]
+			},
+			{
+				"tag": "Experience yoga",
+				"title": "Elevate Your Spirit with yoga.",
+				"description": "Experience a journey of mindful movement and holistic rejuvenation through yoga.",
+				"image": "https://via.placeholder.com/150",
+				"pills_gradient": ["#9CECFB", "#65C7F7", "#0052D4"]
+			},
+			{
+				"tag": "Master yoga",
+				"title": "Transform Your Life with yoga.",
+				"description": "Embrace expert guidance and profound practice to master the art of yoga.",
+				"image": "https://via.placeholder.com/150",
+				"pills_gradient": ["#A770EF", "#CF8BF3", "#FDB99B"]
+			}
+		]
+	},
+	"auth": {
+		"screenName": "Auth",
+		"screenType": "slider",
+		"slides": [
+			{
+				"tag": "Join the yoga",
+				"title": "Enhance your lifestyle with yoga.",
+				"description": "Elevate everyday living with mindful yoga.",
+				"image": "https://via.placeholder.com/150"
+			},
+			{
+				"tag": "Explore the yoga",
+				"title": "Embrace your journey with yoga.",
+				"description": "Step into your path of serenity with yoga.",
+				"image": "https://via.placeholder.com/150"
+			},
+			{
+				"tag": "Transform with yoga",
+				"title": "Transform your life with yoga.",
+				"description": "Renew body and mind with every pose.",
+				"image": "https://via.placeholder.com/150"
+			}
+		]
+	}
+}
