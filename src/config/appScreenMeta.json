@@ -1,0 +1,63 @@
+{
+    "title": "Yogayukt",
+    "landing": {
+        "screenName": "Landing",
+        "screenType": "slider",
+        "background_image": "https://static.vecteezy.com/system/resources/previews/045/721/160/large_2x/yoga-woman-with-plants-and-leaves-on-her-back-on-transparent-background-free-png.png",
+        "slides": [
+            {
+                "tag": "Discover yoga",
+                "title": "Enhance your lifestyle with yoga.",
+                "description": "Dive into the transformative practices of yoga and awaken inner balance.",
+                "pills_gradient": [
+                    "#43C6AC",
+                    "#63ff85"
+                ]
+            },
+            {
+                "tag": "Experience yoga",
+                "title": "Elevate Your Spirit with yoga.",
+                "description": "Experience a journey of mindful movement and holistic rejuvenation through yoga.",
+                "pills_gradient": [
+                    "#9CECFB",
+                    "#65C7F7",
+                    "#0052D4"
+                ]
+            },
+            {
+                "tag": "Master yoga",
+                "title": "Transform Your Life with yoga.",
+                "description": "Embrace expert guidance and profound practice to master the art of yoga.",
+                "pills_gradient": [
+                    "#A770EF",
+                    "#CF8BF3",
+                    "#FDB99B"
+                ]
+            }
+        ]
+    },
+    "auth": {
+        "signup": {
+            "screenName": "Signup",
+            "screenType": "auth",
+            "tagline": "New to yogayukt",
+            "subTagline": "Please signup to your account.",
+            "background_image": "https://png.pngtree.com/png-vector/20240712/ourmid/pngtree-girl-doing-yoga-in-nature-png-image_13064875.png"
+        },
+        "login": {
+            "screenName": "Login",
+            "screenType": "auth",
+            "tagline": "Welcome Back",
+            "subTagline": "Please login to your account.",
+            "background_image": "https://png.pngtree.com/png-vector/20240712/ourmid/pngtree-girl-doing-yoga-in-nature-png-image_13064875.png"
+        },
+        "forgot_password": {
+            "screenName": "Forgot password",
+            "screenType": "auth"
+        },
+        "verify_user": {
+            "screenName": "Verify user",
+            "screenType": "auth"
+        }
+    }
+}
