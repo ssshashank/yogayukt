@@ -12,8 +12,9 @@ export class MethodType {
 export class AuthType {
     static LOGIN = "/login";
     static SIGNUP = "/signup";
-    static FORGOTPASSWORD = "/forgotpassword";
-    static UPDATEPASSWORD = "/updatepassword";
+    static FORGOT_PASSWORD = "/forgot_password";
+    static UPDATE_PASSWORD = "/update_password";
+    static VERIFY_USER = "/verify_user";
 }
 
 export class HTTPStatusCode {
