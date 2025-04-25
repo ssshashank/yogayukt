@@ -10,7 +10,7 @@ import {
 	ActivityIndicator,
 } from "react-native";
 import { useRef, useState } from "react";
-import Animated, { useSharedValue, withSpring } from "react-native-reanimated";
+import { useSharedValue, withSpring } from "react-native-reanimated";
 import { router } from "expo-router";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AtSign, KeyRound } from "lucide-react-native";

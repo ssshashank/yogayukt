@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { useState, useRef } from "react";
 import { AtSign, AudioLines, KeyRound, User2 } from "lucide-react-native";
-import Animated, { useSharedValue, withSpring } from "react-native-reanimated";
+import { useSharedValue, withSpring } from "react-native-reanimated";
 import { router } from "expo-router";
 import Checkbox from "expo-checkbox";
 import { SubmitHandler, useForm } from "react-hook-form";
