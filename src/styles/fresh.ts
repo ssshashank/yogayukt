@@ -2,24 +2,41 @@ import { ColorTheme } from "./theme.type";
 
 const FreshTheme: ColorTheme = {
     light: {
-        primary: '#597445',
-        secondary: '#658147',
-        tertiary: '#729762',
-        background: '#E7F0DC',
-        primaryText: '#000000',
-        secondaryText: '#FFFFFF',
-        disabled: '#FFFFFF',
-        border: '#CED1D4',
+        primary: "#283106",
+        secondary: "#C7C2AB",
+        accent: "#777E5C",
+        surface: "#D1D8BD",
+        tertiary: "#DFEODC",
+        background: "#F5F5F5",
+        primaryText: "#021420",
+        secondaryText: "#0A253A",
+        disabled: "#CED1D4",
+        error: "#D0021B",
+        success: "#7ED321",
+        warning: "#F8E71C",
+        border: "#FFFFFF",
+        black: "#000",
+        white: "#fff",
+
+
     },
     dark: {
-        primary: '#DCD7C9',
-        secondary: '#A27B5C',
-        tertiary: '#3F4E4F',
-        background: '#2C3639',
-        primaryText: '#A27B5C',
-        secondaryText: '#000000',
-        disabled: '#FFFFFF',
-        border: '#FFFFFF',
+        primary: "#283106",
+        secondary: "#C7C2AB",
+        accent: "#777E5C",
+        surface: "#D1D8BD",
+        tertiary: "#DFEODC",
+        background: "#F5F5F5",
+        primaryText: "#021420",
+        secondaryText: "#0A253A",
+        disabled: "#CED1D4",
+        error: "#D0021B",
+        success: "#7ED321",
+        warning: "#F8E71C",
+        border: "#FFFFFF",
+        black: "#000",
+        white: "#fff",
+
     }
 };
 
