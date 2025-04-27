@@ -1,16 +1,10 @@
 import {
-    FlatList,
     Text,
     View,
     Animated as RNAnimated,
-    NativeScrollEvent,
-    NativeSyntheticEvent,
-    Pressable,
     StyleSheet,
 } from "react-native";
 import { useState, useRef } from "react";
-import { Image } from "expo-image";
-import { LinearGradient } from "expo-linear-gradient";
 import Animated, {
     useSharedValue,
     withSpring,
@@ -18,30 +12,24 @@ import Animated, {
     Easing,
 } from "react-native-reanimated";
 import { router } from "expo-router";
-import Paginator from "@/components/paginator/paginator";
-import RelaxCard from "@/components/RelaxCard";
 import { useDimension } from "@/hooks/useDimension";
-import { Pills } from "@/components/pills";
 import { FontSize } from "@/constants/application";
 import { useTheme } from "@/providers/themeProvider";
-import { RightArrow } from "@Assets/svg/arrow";
+import { LeftArrow, RightArrow } from "@Assets/svg/arrow";
 import { Colors } from "@/styles/theme.type";
-import { AnimatedRichButton } from "@/components/button";
+import {FAB } from "@/components/button";
+import { LinearGradient } from "expo-linear-gradient";
+import MaskedView from '@react-native-masked-view/masked-view';
 
 const { landing } = require("@/config/appScreenMeta.json");
-const { slides, background_image } = landing || {};
+const { slides, } = landing || {};
 
 export default function HomeScreen() {
-    const [_, setCurrentIndex] = useState<number>(0);
-    const [isShow, setShow] = useState<boolean>(false);
-    const [__, setScrollPercentage] = useState(0);
     const { wp, hp, scaleFontSize } = useDimension();
     const { theme } = useTheme();
     const styles = createStyles(theme);
-
+    const [activeIndex, setActiveIndex] = useState<number>(0);
     const scrollX = useRef(new RNAnimated.Value(0)).current;
-    const slideRef = useRef<FlatList>(null);
-    const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 })?.current;
 
     const gap = useSharedValue<number>(15);
     const opacity = useSharedValue<number>(0);
@@ -51,35 +39,6 @@ export default function HomeScreen() {
     const animConfig = {
         duration: 400,
         easing: Easing.bezier(0.25, 0.1, 0.25, 1), // Smooth cubic bezier curve
-    };
-
-    // Calculate current index from scroll position
-    const updateCurrentIndex = (
-        event: NativeSyntheticEvent<NativeScrollEvent>
-    ) => {
-        const contentOffsetX = event.nativeEvent.contentOffset.x;
-        const currentIndex = Math.round(contentOffsetX / wp(100));
-        const maxScroll = wp(100) * (slides.length - 1);
-
-        // Calculate scroll percentage (0 to 100)
-        const percentage = Math.min(
-            100,
-            Math.max(0, (contentOffsetX / maxScroll) * 100)
-        );
-        setScrollPercentage(percentage);
-        setCurrentIndex(currentIndex);
-
-        // Show button when at the last slide, hide otherwise
-        const isLastSlide = currentIndex === slides.length - 1;
-        setShow(isLastSlide);
-
-        if (isLastSlide) {
-            opacity.value = withSpring(1, animConfig);
-            bottom.value = withTiming(hp(5), animConfig);
-        } else {
-            opacity.value = withSpring(0, animConfig);
-            bottom.value = withTiming(0, animConfig);
-        }
     };
 
     // Handle button press - you can add your action here
@@ -99,91 +58,92 @@ export default function HomeScreen() {
 
     return (
         <View style={styles?.section}>
-            <View style={{ height: "5%" }}></View>
-            <View style={{ height: "50%" }}>
-                <Image
-                    style={styles?.background}
-                    source={background_image}
-                    placeholder='Lorem ipsum'
-                    contentFit='cover'
-                    transition={1000}
-                />
-            </View>
-            <View style={styles?.sliderContainer}>
-                <Animated.FlatList
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                    pagingEnabled
-                    data={slides}
-                    scrollEventThrottle={32}
-                    viewabilityConfig={viewConfig}
-                    ref={slideRef}
-                    onScroll={RNAnimated.event(
-                        [
-                            {
-                                nativeEvent: {
-                                    contentOffset: {
-                                        x: scrollX,
-                                    },
-                                },
-                            },
-                        ],
-                        {
-                            useNativeDriver: false,
-                            listener: updateCurrentIndex,
-                        }
-                    )}
-                    renderItem={({ item, index }) => {
+            <View style={styles?.sectionBody}>
+                <View style={{ marginBottom: 30 }}>
+                    <Text style={{ color: theme.accent, fontSize: scaleFontSize(FontSize.MD) }}>{slides?.[activeIndex]?.tag}</Text>
+                </View>
+                <View style={{ marginBottom: 90 }}>
+                    <Text style={{ color: "white", fontSize: scaleFontSize(FontSize.XXL) }}>{slides?.[activeIndex]?.description}</Text>
+                </View>
+                <MaskedView
+                    style={{ flex: 1, flexDirection: 'row', height: '100%' }}
+                    maskElement={
+                        <View
+                            style={{
+                                // Transparent background because mask is based off alpha channel.
+                                backgroundColor: 'transparent',
+                                flex: 1,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <Text
+                                style={{
+                                    fontSize: 60,
+                                    color: 'black',
+                                    fontWeight: 'bold',
+                                }}
+                            >
+                                Basic Mask
+                            </Text>
+                        </View>
+                    }
+                >
+                    {/* Shows behind the mask, you can put anything here, such as an image */}
+                    <View style={{ flex: 1, height: '100%', backgroundColor: '#324376' }} />
+                    <View style={{ flex: 1, height: '100%', backgroundColor: '#F5DD90' }} />
+                    <View style={{ flex: 1, height: '100%', backgroundColor: '#F76C5E' }} />
+                    <View style={{ flex: 1, height: '100%', backgroundColor: '#e1e1e1' }} />
+                </MaskedView>
+                <View
+                    style={{
+                        flexDirection: "row",
+                        gap: 5,
+                        marginBottom: 30,
+                    }}>
+                    {slides?.map((slide: any, index: number) => {
                         return (
-                            <View key={index}>
-                                <LinearGradient
-                                    colors={item?.pills_gradient}
-                                    start={{ x: 0, y: 0 }}
-                                    end={{ x: 1, y: 0 }}
-                                    style={{
-                                        alignSelf: "center",
-                                        borderRadius: 20,
-                                        marginBottom: 10,
-                                    }}>
-                                    <Pills
-                                        style={{
-                                            paddingHorizontal: 15,
-                                            paddingVertical: 8,
-                                            borderRadius: 20,
-                                            alignSelf: "center",
-                                        }}>
-                                        <Text
-                                            style={{
-                                                fontSize: scaleFontSize(FontSize.SM),
-                                                fontWeight: 500,
-                                            }}>
-                                            {item?.tag}
-                                        </Text>
-                                    </Pills>
-                                </LinearGradient>
-                                <RelaxCard data={item} />
-                            </View>
+                            <View
+                                style={{
+                                    width: index === activeIndex ? 30 : 15,
+                                    height: 2,
+                                    borderRadius: 10,
+                                    backgroundColor: "white",
+                                }}
+
+                                key={index}
+                            ></View>
                         );
-                    }}
-                    keyExtractor={(item) => item.screenName}
-                />
-                <Paginator data={slides} scrollX={scrollX} />
-                <AnimatedRichButton
-                    style={[
-                        styles.button,
-                        {
-                            gap,
-                            opacity,
-                            bottom,
-                            pointerEvents: isShow ? "auto" : "none",
-                        },
-                    ]}
-                    onPress={handleOnClick}
-                    onPressIn={handleButtonPressIn}
-                    onPressOut={handleButtonPressOut}>
-                    <Text style={styles.buttonText}>Get Started</Text>
-                    <RightArrow />
-                </AnimatedRichButton>
+                    })}
+                </View>
+                <View style={{ flexDirection: "row", gap: 5 }}>
+                    <FAB
+                        buttonStyle={{
+                            flex: 0,
+                            borderWidth: 1,
+                            borderRadius: 50,
+                            borderColor: 'white',
+                        }}
+                        onPress={
+                            activeIndex > 0 ? () => setActiveIndex(activeIndex - 1) : null
+                        }>
+                        <LeftArrow color='white' />
+                    </FAB>
+                    <FAB
+                        buttonStyle={{
+                            flex: 0,
+                            borderColor: 'white',
+                            borderWidth: 1,
+                            borderRadius: 50,
+                        }}
+                        onPress={
+                            activeIndex < slides?.length - 1
+                                ? () => setActiveIndex(activeIndex + 1)
+                                : null
+                        }>
+                        <RightArrow color='white' />
+                    </FAB>
+                </View>
             </View>
         </View>
     );
@@ -191,19 +151,19 @@ export default function HomeScreen() {
 
 // styleSheet
 const createStyles = (theme: Colors) => {
-    const { wp, scaleFontSize } = useDimension();
+    const { wp, hp, scaleFontSize } = useDimension();
     return StyleSheet.create({
         section: {
             flex: 1,
-            backgroundColor: theme.background,
-            width: wp(90),
-            marginHorizontal: "auto",
-            alignItems: "center",
-            justifyContent: "space-between",
-        },
-        background: {
-            flex: 1,
             width: wp(100),
+            alignItems: "center",
+            justifyContent: "center",
+        },
+        sectionBody: {
+            height: hp(90),
+            marginHorizontal: "auto",
+            justifyContent: "flex-end",
+            width: wp(90),
         },
         sliderContainer: {
             flex: 1,

@@ -9,13 +9,13 @@ export const loginSchema = z?.object({
 	password: z
 		.string()
 		.min(6, { message: "Password must be at least 6 characters long" })
-		.regex(/[A-Z]/, {
-			message: "Password must include at least one uppercase letter",
-		})
-		.regex(/[0-9]/, { message: "Password must include at least one number" })
-		.regex(/[^a-zA-Z0-9]/, {
-			message: "Password must include at least one special character",
-		}),
+		//.regex(/[A-Z]/, {
+		//	message: "Password must include at least one uppercase letter",
+		//})
+		//.regex(/[0-9]/, { message: "Password must include at least one number" })
+		//.regex(/[^a-zA-Z0-9]/, {
+		//	message: "Password must include at least one special character",
+		//}),
 });
 
 export type LoginFormType = z.infer<typeof loginSchema>;
