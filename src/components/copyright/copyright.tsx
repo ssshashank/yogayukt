@@ -6,33 +6,32 @@ import { APP_NAME, FontSize } from "@/constants/application";
 import { Colors } from "@/styles/theme.type";
 
 export default function Copyright() {
-	const { theme } = useTheme();
-	const styles = createStyles(theme);
+    const { theme } = useTheme();
+    const styles = createStyles(theme);
 
-	return (
-		<Animated.View style={styles.copyrightContainer}>
-			<Text style={styles.copyright}>
-				{APP_NAME} | Copyright © {new Date().getFullYear()}
-			</Text>
-		</Animated.View>
-	);
+    return (
+        <Animated.View style={styles.copyrightContainer}>
+            <Text style={styles.copyright}>
+                {APP_NAME} | Copyright © {new Date().getFullYear()}
+            </Text>
+        </Animated.View>
+    );
 }
 
 const createStyles = (theme: Colors) => {
-	const { wp, scaleFontSize } = useDimension();
+    const { wp, scaleFontSize } = useDimension();
 
-	return StyleSheet.create({
-		copyrightContainer: {
-			width: wp(90),
-			alignItems: "center",
-			justifyContent: "center",
-			marginTop: 10,
-		},
-		copyright: {
-			textAlign: "center",
-			color: theme.primaryText,
-			fontSize: scaleFontSize(FontSize.XS),
-			opacity: 0.5,
-		},
-	});
+    return StyleSheet.create({
+        copyrightContainer: {
+            width: wp(90),
+            alignItems: "center",
+            justifyContent: "center",
+        },
+        copyright: {
+            textAlign: "center",
+            color: theme.white,
+            fontSize: scaleFontSize(FontSize.XS),
+            opacity: 0.5,
+        },
+    });
 };
