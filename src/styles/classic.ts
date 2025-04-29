@@ -2,16 +2,16 @@ import { ColorTheme } from "./theme.type";
 
 const ClassicTheme: ColorTheme = {
     light: {
-        primary: "#511E90",
+        primary: "#013135",
         secondary: "#AFA08C",
-        accent: "#ba9bfd",
+        accent: "#597174",
         surface: "#D1D8BD",
         black: "#000",
         white: "#fff",
         tertiary: "#DFEODC",
         background: "#F5F5F5",
         primaryText: "#021420",
-        secondaryText: "#0A253A",
+        secondaryText: "#C8E995",
         disabled: "#CED1D4",
         error: "#D0021B",
         success: "#7ED321",
