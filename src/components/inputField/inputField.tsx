@@ -107,7 +107,7 @@ const InputField = forwardRef<
                                 {
                                     borderWidth: 0,
                                     cursor: "pointer",
-                                    paddingVertical: 15,
+                                    paddingVertical: 18,
                                     paddingHorizontal: 1,
                                     fontSize: 14,
                                     flex: 1,

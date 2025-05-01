@@ -21,7 +21,6 @@ import { Controller, Control } from "react-hook-form";
 import { useTheme } from "@/providers/themeProvider";
 import { useDimension } from "@/hooks/useDimension";
 import { Colors } from "@/styles/theme.type";
-import { FontSize } from "@/constants/application";
 
 interface SelectProps {
     name: string;
