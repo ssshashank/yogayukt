@@ -31,7 +31,32 @@ const AuthAPI = {
             return errorDebug(error, "AuthAPI.login");
         }
     },
-    forgotPassword: async function(data: Object) { },
+    forgotPassword: async function(data: Object) {
+        const _url = `${Network(APIType.AUTH)}${AuthType.FORGOT_PASSWORD}`;
+        const httpService = new HttpService({
+            URL: _url,
+            dataToSend: data
+        });
+        try {
+            const response = await httpService.sendPostRequest();
+            return response;
+        } catch (error) {
+            return errorDebug(error, "AuthAPI.forgot_password");
+        }
+    },
+    updatePassword: async function(data: Object) {
+        const _url = `${Network(APIType.AUTH)}${AuthType.UPDATE_PASSWORD}`;
+        const httpService = new HttpService({
+            URL: _url,
+            dataToSend: data
+        });
+        try {
+            const response = await httpService.sendPostRequest();
+            return response;
+        } catch (error) {
+            return errorDebug(error, "AuthAPI.update_password");
+        }
+    },
     verifyPassword: async function(data: Object) { },
 };
 
