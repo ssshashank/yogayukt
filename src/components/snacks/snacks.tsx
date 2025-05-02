@@ -59,9 +59,9 @@ export const Snack = forwardRef<React.ElementRef<typeof View>, SnacksProps>(
         const {
             message = "Hello, world",
             messageStyle,
-            alignment = Alignment.top,
+            alignment = Alignment.bottom,
             type = SnackType.info,
-            isAutoDismissable = true,
+            isAutoDismissable = false,
             iconSize = 16,
             iconColor = theme.white,
             prefixIcon,
@@ -87,8 +87,7 @@ export const Snack = forwardRef<React.ElementRef<typeof View>, SnacksProps>(
         }, [onDismiss]);
 
         const handlePress = useCallback(() => {
-            const finalPosition = alignment === Alignment.top ? -50 : 50;
-            translateSnack.value = withTiming(finalPosition, animConfig);
+            translateSnack.value = withTiming(-30, animConfig);
             opacity.value = withTiming(0, animConfig, (finished) => {
                 if (finished) {
                     runOnJS(finishDismiss)();
@@ -98,7 +97,6 @@ export const Snack = forwardRef<React.ElementRef<typeof View>, SnacksProps>(
 
         useEffect(() => {
             let timeoutId: NodeJS.Timeout;
-            // Initial animation
             translateSnack.value =
                 alignment === Alignment.top
                     ? withTiming(20, animConfig)
@@ -108,10 +106,10 @@ export const Snack = forwardRef<React.ElementRef<typeof View>, SnacksProps>(
             if (isAutoDismissable) {
                 timeoutId = setTimeout(handlePress, dismissTime);
             }
-
+            
+            // clear animation
             return () => {
                 if (timeoutId) clearTimeout(timeoutId);
-                // Cancel any ongoing animations
                 translateSnack.value = withTiming(0, { duration: 0 });
                 opacity.value = withTiming(0, { duration: 0 });
             };
