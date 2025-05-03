@@ -167,7 +167,6 @@ export const Select = forwardRef<
 const createStyles = (theme: Colors) =>
     StyleSheet.create({
         label: {
-            marginBottom: 4,
             color: theme.primaryText,
             fontSize: 14,
         },
