@@ -32,4 +32,19 @@ export const SEEKER_ROUTES = {
         path: "/",
         type: "seeker",
     },
+    CLASS: {
+        name: "class",
+        path: "/class",
+        type: "seeker",
+    },
+    GURUS: {
+        name: "gurus",
+        path: "/gurus",
+        type: "seeker",
+    },
+    CHAT: {
+        name: "chat",
+        path: "/chat",
+        type: "seeker"
+    }
 };
