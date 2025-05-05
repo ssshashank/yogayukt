@@ -1,16 +1,18 @@
 import { forwardRef } from "react";
 import { Pressable, StyleProp, View, ViewStyle } from "react-native";
 import { Image } from 'expo-image';
+import { DEFAULT_AVATAR } from "@/constants/application";
 
 interface AvatarProps {
     children?: React.ReactNode,
     url?: string;
     avatarStyle?: StyleProp<ViewStyle>
     onPress?: () => void;
-
+    fallback?: string;
 }
 const Avatar = forwardRef<React.ElementRef<typeof Pressable>, AvatarProps>((props, ref) => {
     const { url, avatarStyle, onPress } = props;
+
     return (
         <View>
             <Pressable
@@ -18,8 +20,8 @@ const Avatar = forwardRef<React.ElementRef<typeof Pressable>, AvatarProps>((prop
                 ref={ref}
                 style={[
                     {
-                        width: 70,
-                        height: 70,
+                        width: 50,
+                        height: 50,
                         overflow: 'hidden',
                         borderRadius: '50%',
                     }, avatarStyle
@@ -28,7 +30,7 @@ const Avatar = forwardRef<React.ElementRef<typeof Pressable>, AvatarProps>((prop
                     style={{
                         flex: 1,
                     }}
-                    source={url || "https://images.unsplash.com/photo-1640960543409-dbe56ccc30e2?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzh8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D"}
+                    source={url || DEFAULT_AVATAR}
                     contentFit="cover"
                     transition={1000}
                 />
